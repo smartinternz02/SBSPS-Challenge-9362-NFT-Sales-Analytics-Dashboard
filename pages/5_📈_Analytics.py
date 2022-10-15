@@ -41,13 +41,14 @@ if category == "Analysis Graph":
                 st.markdown("---") 
                 collection_selection = top_collection.query(f'Name == @value')  
                 st.markdown(f"## {value}")   
+                st.write(collection_selection) 
                 # avg_sales = px.bar(collection_selection,collection_selection['Market_Cap']) 
                 # avg_sales.add_bar(collection_selection,)  
                 # st.plotly_chart(avg_sales)  
                 # st.write(collection_selection)
-                analysis = px.histogram(collection_selection,x=collection_selection['Name'],y = [collection_selection['Volume'],collection_selection['Floor_Price']])   
+                #analysis = px.histogram(collection_selection,collection_selection['Volume'],collection_selection['Owners'])     
                 st.bar_chart(collection_selection,x='Name',y=['Volume','Floor_Price','Sales'])             
-                st.plotly_chart(analysis)  
+                #st.plotly_chart(analysis)  
 
 
     if dataset == "History Sales":
@@ -55,14 +56,9 @@ if category == "Analysis Graph":
         #st.dataframe(history_sales)   
         st.markdown("# Historical Sales Analysis") 
         left_column,right_column = st.columns(2)  
-        sales_hist = px.histogram(history_sales,x=history_sales['Date'],y=history_sales['AverageUSD_cum'])
-        number_of_sales = px.histogram(history_sales,history_sales['Number_of_Sales']) 
-
-        with left_column: 
-            st.plotly_chart(sales_hist)
-
-        with right_column:
-            st.plotly_chart(number_of_sales) 
+        st.bar_chart(history_sales,x='Date',y=['AverageUSD_cum'])  
+        st.bar_chart(history_sales,x = 'Date', y='Number_of_Sales')   
+        st.area_chart(history_sales,x = 'Date',y = ['Primary_Sales_cumsum','Secondary_Sales_cumsum'])     
   
 
 

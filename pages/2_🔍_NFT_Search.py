@@ -156,21 +156,24 @@ if endpoint == "NFT Metadata":
     token_id = st.text_input("Enter Token ID: ") 
     if token_id and address: 
         response = NFT_Metadata(address,token_id)
-        #st.write(response)     # For Testing Purpose 
-        img_url = json.loads(response['metadata'])['image']  
-        st.markdown(f"""
-            <div class = 'container' style = "display:flex; flex-direction:column; align-items:center; justiify-content:space-between; padding:20px; border:2px solid white; border-radius:30px; gap:20px; margin:30px">    
-                <h2><span style = "font-size:30px">Name : </span><span style = "font-weight:1000; letter-spacing:5px; margin:20px">{response['name']}</span></h2> 
-                <img src = "{img_url}" height = "200px" style = "border:2px solid white; border-radius:20px"> 
-                <h3><span>Token Address : </span><span><u><i>{response['token_address']}</i></u></span></h2> 
-                <h4><span>Token Hash : </span><span><u><i>{response['token_hash']}</i></u></span></h4>
-                <div style = "display:flex; align-items:center; justify-content:space-between"> 
-                <h4><span>Minted Block Number : </span><span>{response['block_number_minted']}</span></h4>
-                <h4><span>Block Number : </span><span>{response['block_number']}</span></h4>
-                </div>
-                <h4 style = "width:100%; padding:20px;"><span>NFT URL : </span><a href = "{response['token_uri']}" style = "word-wrap:break-word; font-size:20px">{response['token_uri']}</a></h4>
-            </div> 
-        """,unsafe_allow_html=True)
+        st.write(response)     # For Testing Purpose 
+        try:
+            img_url = json.loads(response['metadata'])['image']  
+            st.markdown(f"""
+                <div class = 'container' style = "display:flex; flex-direction:column; align-items:center; justiify-content:space-between; padding:20px; border:2px solid white; border-radius:30px; gap:20px; margin:30px">    
+                    <h2><span style = "font-size:30px">Name : </span><span style = "font-weight:1000; letter-spacing:5px; margin:20px">{response['name']}</span></h2> 
+                    <img src = "{img_url}" height = "200px" style = "border:2px solid white; border-radius:20px"> 
+                    <h3><span>Token Address : </span><span><u><i>{response['token_address']}</i></u></span></h2> 
+                    <h4><span>Token Hash : </span><span><u><i>{response['token_hash']}</i></u></span></h4>
+                    <div style = "display:flex; align-items:center; justify-content:space-between"> 
+                    <h4><span>Minted Block Number : </span><span>{response['block_number_minted']}</span></h4>
+                    <h4><span>Block Number : </span><span>{response['block_number']}</span></h4>
+                    </div>
+                    <h4 style = "width:100%; padding:20px;"><span>NFT URL : </span><a href = "{response['token_uri']}" style = "word-wrap:break-word; font-size:20px">{response['token_uri']}</a></h4>
+                </div> 
+            """,unsafe_allow_html=True)
+        except Exception as e:
+            st.write(e) 
         
     else:
         st.markdown("""
