@@ -156,7 +156,7 @@ if endpoint == "NFT Metadata":
     token_id = st.text_input("Enter Token ID: ") 
     if token_id and address: 
         response = NFT_Metadata(address,token_id)
-        st.write(response)     # For Testing Purpose 
+        #st.write(response)     # For Testing Purpose 
         try:
             img_url = json.loads(response['metadata'])['image']  
             st.markdown(f"""
@@ -173,7 +173,8 @@ if endpoint == "NFT Metadata":
                 </div> 
             """,unsafe_allow_html=True)
         except Exception as e:
-            st.write(e) 
+            "---"
+            st.markdown(f"# {response['message']}")  
         
     else:
         st.markdown("""
