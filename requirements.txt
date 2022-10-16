@@ -1,0 +1,6 @@
+pandas 
+streamlit 
+plotly_express 
+requests 
+mtplotlib 
+seaborn
