@@ -19,6 +19,7 @@ To make things easier and cleaner , we deployed this app in Heroku! 🥳
 https://nftanalyzis.herokuapp.com/   (your ultimate NFT Mentor 😉) 
 
 
+NOTE : Use dark theme for better visuals 🌚  (under settings, THEME > Dark) 
 
 <<<================================================================>>>
 
